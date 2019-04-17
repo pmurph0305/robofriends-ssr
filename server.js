@@ -11,14 +11,12 @@ app
     const server = express()
 
     server.get('/robot/:id', (req, res) => {
-        console.log("ROBOT ROUTE")
         const actualPage = '/robot'
         const queryParams = { id: req.params.id }
         app.render(req, res, actualPage, queryParams)
     })
 
-    server.get('/', (req, res) => {
-        console.log("running...")
+    server.get('*', (req, res) => {
       return handle(req, res)
     })
 
