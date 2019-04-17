@@ -1,13 +1,21 @@
 import fetch from 'isomorphic-unfetch';
+import {withRouter} from 'next/router'
 import React from 'react';
+
+// const Robot = withRouter(props => (
+//     <div>
+//         <h1>{props.router.query.id}</h1>
+//         <p>some writing here</p>
+//     </div>
+// ))
+
+
 
 class Robot extends React.Component {
 
     static async getInitialProps({query}) {
-        console.log(query);
         const res = await fetch('https://jsonplaceholder.typicode.com/users/'+query.id);
         const data = await res.json();
-        console.log(data);
         return {
             robot: data
         }
@@ -15,7 +23,6 @@ class Robot extends React.Component {
 
     render() {
         const { robot } = this.props;
-        console.log(this.props);
         return (
             <div className='tc'>
                 <link href='/static/styles.css' rel='stylesheet'></link>
